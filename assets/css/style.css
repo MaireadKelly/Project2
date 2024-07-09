@@ -4,7 +4,7 @@ body {
     align-items: center;
     height: 100vh;  
     background-color: #aa6639;
-    font-family: Archivo, sans-serif;
+    font-family: Archivo-black, sans-serif;
 }
 
 #game-container {
@@ -18,4 +18,57 @@ body {
     gap: 5px;
     justify-content: center;
     margin-bottom: 50px;
+}
+
+.cell {
+    width: 50px;
+    height: 50px;
+    border: 2px, solid #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.correct {
+    background-color: #28774F;
+    border-color: #28774F;
+    color:#ffffff
+}
+
+.present{
+    background-color: #d2ef47;
+    border-color: #d2ef47;
+    color: #ffffff
+}
+
+.absent {
+    background-color: #aeaeae;
+    border-color: #aeaeae;
+    color: #ffffff;
+}
+
+#guess-input {
+    font-size: 24px;
+    padding: 5px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+#submit-button {
+    padding: 10px 20px;
+    background-color: #7da1bf;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+}
+
+#submit-button:hover {
+    background-color: #0048a4;
+}
+
+#message {
+    margin-top: 20px;
+    font-size: 18px;
 }
