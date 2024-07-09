@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let guessInput = document.getElementById('guess-input');
     let submitButton = document.getElementById('submit-button');
     let message = document.getElementById('message');
-   
+    let keyboard = document.getElementById('keyboard');
     let words = ["apple", "grape", "berry", "peach", "melon"];
     let answer = words[Math.floor(Math.random() * words.length)].toUpperCase();
     let currentRow = 0;
@@ -21,8 +21,56 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     };
 
-    // CREATE  KEYBOARD
+    document.addEventListener("keyup", (e) => {
+
+        if (guessesRemaining === 0) {
+            return
+        }
     
+        let pressedKey = String(e.key)
+        if (pressedKey === "Backspace" && nextLetter !== 0) {
+            deleteLetter()
+            return
+        }
+    
+        if (pressedKey === "Enter") {
+            checkGuess()
+            return
+        }
+    
+        let found = pressedKey.match(/[a-z]/gi)
+        if (!found || found.length > 1) {
+            return
+        } else {
+            insertLetter(pressedKey)
+        }
+    })
+
+    document.addEventListener("keyup", (e) => {
+
+    if (guessesRemaining === 0) {
+        return
+    }
+
+    let pressedKey = String(e.key)
+    if (pressedKey === "Backspace" && nextLetter !== 0) {
+        deleteLetter()
+        return
+    }
+
+    if (pressedKey === "Enter") {
+        checkGuess()
+        return
+    }
+
+    let found = pressedKey.match(/[a-z]/gi)
+    if (!found || found.length > 1) {
+        return
+    } else {
+        insertLetter(pressedKey)
+    }
+})
+
     // CHECK THE PLAYERS GUESS
     function checkGuess() {
         let guess = guessInput.value.toUpperCase();
@@ -70,5 +118,5 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // INITIALISE THE GAME
     createBoard();
-   
+     
 });
