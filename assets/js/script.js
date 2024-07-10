@@ -26,29 +26,30 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         message.textContent = "";
-        /*LOOP TO CHECK FOR REPEATED LETTERS*/
-        let correctLetters = new Array(5).fill(false);
+        
         let guessLetters = guess.split('');
         let answerLetters = answer.split('');
+        let correctLetters = new Array(5).fill(false);
 
-        //FIRST PASS: CHECK FOR CORRECT LETTERS
+        // First pass: Check for correct letters
         for (let i = 0; i < 5; i++) {
             if (guessLetters[i] === answerLetters[i]) {
                 correctLetters[i] = true;
                 answerLetters[i] = null;
             }
         }
-        // SECOND PASS: CHECK FOR PRESENT LETTERS
-            for (let i = 0; i < 5; i++) {
+
+        // Second pass: Check for present letters and absent letters
+        for (let i = 0; i < 5; i++) {
             let cell = document.getElementById(`cell-${currentRow}-${i}`);
-                cell.textContent = guess[i];
-                if (correctLetters[i]) {
-                    cell.classList.add('correct');
-                } else if (answerLetters.includes(guessLetters[i])) {
-                    cell.classList.add('present');
-                    answerLetters[answerLetters.indexOf(guessLetters[i])] = null;  
-                } else {
-                    cell.classList.add('absent');
+            cell.textContent = guessLetters[i];
+            if (correctLetters[i]) {
+                cell.classList.add('correct');
+            } else if (answerLetters.includes(guessLetters[i])) {
+                cell.classList.add('present');
+                answerLetters[answerLetters.indexOf(guessLetters[i])] = null;
+            } else {
+                cell.classList.add('absent');
             }
         }
 
@@ -75,6 +76,31 @@ document.addEventListener("DOMContentLoaded", function () {
             event.preventDefault();
             checkGuess();
         }
+    });
+
+    document.addEventListener("keyup", function (event) {
+        let pressedKey = event.key.toUpperCase();
+        if (pressedKey === "BACKSPACE") {
+            guessInput.value = guessInput.value.slice(0, -1);
+        } else if (pressedKey.match(/^[A-Z]$/) && guessInput.value.length < 5) {
+            guessInput.value += pressedKey;
+        } else if (pressedKey === "ENTER") {
+            checkGuess();
+        }
+    });
+
+    // Add event listeners to on-screen keyboard buttons
+    document.querySelectorAll('.keyboard-button').forEach(button => {
+        button.addEventListener('click', function () {
+            let key = this.textContent.toUpperCase();
+            if (key === 'DEL') {
+                guessInput.value = guessInput.value.slice(0, -1);
+            } else if (key === 'ENTER') {
+                checkGuess();
+            } else if (guessInput.value.length < 5) {
+                guessInput.value += key;
+            }
+        });
     });
 
     createBoard();
