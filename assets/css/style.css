@@ -83,6 +83,19 @@ body {
     text-transform: uppercase;
 }
 
+.special-key {
+    font-size: 1.2em;
+    width: 80px;
+}
+
+.del-key {
+    width: 70px;
+}
+
+.enter-key {
+    width: 90px;
+}
+
 .keyboard-button:hover {
     background-color: #ccc;
 }
