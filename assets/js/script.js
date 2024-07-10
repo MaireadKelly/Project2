@@ -35,10 +35,10 @@ document.addEventListener("DOMContentLoaded", function () {
         for (let i = 0; i < 5; i++) {
             if (guessLetters[i] === answerLetters[i]) {
                 correctLetters[i] = true;
-                answerLetters[i] = null; // Remove the letter from consideration
+                answerLetters[i] = null;
             }
         }
-        // Second pass: Check for present letters
+        // SECOND PASS: CHECK FOR PRESENT LETTERS
             for (let i = 0; i < 5; i++) {
             let cell = document.getElementById(`cell-${currentRow}-${i}`);
                 cell.textContent = guess[i];
@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     cell.classList.add('correct');
                 } else if (answerLetters.includes(guessLetters[i])) {
                     cell.classList.add('present');
-                    answerLetters[answerLetters.indexOf(guessLetters[i])] = null;  // Remove the letter from consideration
+                    answerLetters[answerLetters.indexOf(guessLetters[i])] = null;  
                 } else {
                     cell.classList.add('absent');
             }
