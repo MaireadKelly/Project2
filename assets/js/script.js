@@ -26,16 +26,29 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         message.textContent = "";
+        /*LOOP TO CHECK FOR REPEATED LETTERS*/
+        let correctLetters = new Array(5).fill(false);
+        let guessLetters = guess.split('');
+        let answerLetters = answer.split('');
 
+        //FIRST PASS: CHECK FOR CORRECT LETTERS
         for (let i = 0; i < 5; i++) {
+            if (guessLetters[i] === answerLetters[i]) {
+                correctLetters[i] = true;
+                answerLetters[i] = null; // Remove the letter from consideration
+            }
+        }
+        // Second pass: Check for present letters
+            for (let i = 0; i < 5; i++) {
             let cell = document.getElementById(`cell-${currentRow}-${i}`);
-            cell.textContent = guess[i];
-            if (guess[i] === answer[i]) {
-                cell.classList.add('correct');
-            } else if (answer.includes(guess[i])) {
-                cell.classList.add('present');
-            } else {
-                cell.classList.add('absent');
+                cell.textContent = guess[i];
+                if (correctLetters[i]) {
+                    cell.classList.add('correct');
+                } else if (answerLetters.includes(guessLetters[i])) {
+                    cell.classList.add('present');
+                    answerLetters[answerLetters.indexOf(guessLetters[i])] = null;  // Remove the letter from consideration
+                } else {
+                    cell.classList.add('absent');
             }
         }
 
