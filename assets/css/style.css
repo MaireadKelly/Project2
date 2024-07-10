@@ -118,3 +118,21 @@ body {
         min-width: 50px;
     }
 }
+
+@media (max-width: 480px) {
+    .cell {
+        width: 30px;
+        height: 30px;
+        font-size: 1.2em;
+    }
+
+    .keyboard-button {
+        padding: 3px;
+        font-size: 0.6em;
+    }
+
+    .special-key {
+        font-size: 0.6em;
+        min-width: 40px;
+    }
+}
