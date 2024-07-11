@@ -5,10 +5,11 @@ document.addEventListener("DOMContentLoaded", function () {
     let submitButton = document.getElementById('submit-button');
     let message = document.getElementById('message');
     let playAgainButton = document.getElementById('play-again-button');
-    let words = ["apple", "horse", "roast", "store", "happy"];
+    
     let answer = words[Math.floor(Math.random() * words.length)].toUpperCase();
     let currentRow = 0;
     let gameEnded = false; 
+
 
     function createBoard() {
         board.innerHTML = ''; 
@@ -22,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Restart game function
+    // RESTART GAME FUNCTION
     function restartGame() {
         currentRow = 0;
         answer = words[Math.floor(Math.random() * words.length)].toUpperCase();
@@ -93,16 +94,15 @@ document.addEventListener("DOMContentLoaded", function () {
     // SUBMIT BUTTON EVENT LISTENER
     submitButton.addEventListener('click', checkGuess);
 
-    // KEYDOWN EVENT LISTENER
+    // KEY EVENT LISTENERS
     guessInput.addEventListener('keydown', function (event) {
         let pressedKey = event.key.toUpperCase();
 
-        // HANDLE BACKSPACE
-        if (pressedKey === "BACKSPACE") {
+            if (pressedKey === "BACKSPACE") {
             event.preventDefault();
             guessInput.value = guessInput.value.slice(0, -1);
         }
-        // HANDLE ENTER KEY
+        
         else if (pressedKey === "ENTER") {
             event.preventDefault();
             if (gameEnded) {
@@ -111,7 +111,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 checkGuess();
             }
         }
-        // HANDLE LETTER KEYS
+        
         else if (pressedKey.match(/^[A-Z]$/) && guessInput.value.length < 5) {
             event.preventDefault();
             guessInput.value += pressedKey;
