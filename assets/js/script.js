@@ -68,12 +68,15 @@ document.addEventListener("DOMContentLoaded", function () {
             message.textContent = "Well Done!! You Guessed Right!!";
             submitButton.disabled = true;
             guessInput.disabled = true;
+            setTimeout(restartGame, 3000); /*RESTART AFTER 3MINS*/
+
         } else {
             currentRow++;
             if (currentRow === 6) {
                 message.textContent = `Game Over! The word was ${answer}`;
                 submitButton.disabled = true;
                 guessInput.disabled = true;
+                setTimeout(restartGame, 3000); /*RESTART AFTER 3MINS*/
             }
         }
 
