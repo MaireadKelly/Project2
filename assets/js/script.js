@@ -18,6 +18,18 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    /*RESTART GAME FUNCTION*/
+    function restartGame() {
+        currentRow = 0;
+        answer = words[Math.floor(Math.random() * words.length)].toUpperCase();
+        message.textContent = "";
+        guessInput.value = "";
+        guessInput.disabled = false;
+        submitButton.disabled = "false";
+        board.innerHTML = "";
+        createBoard();
+    }
+
     function checkGuess() {
         let guess = guessInput.value.toUpperCase();
         if (guess.length !== 5) {
