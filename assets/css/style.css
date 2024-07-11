@@ -108,7 +108,7 @@ body {
         font-size: 1.5em;
     }
 
-    /*.keyboard-button {
+    .keyboard-button {
         padding: 5px;
         font-size: 0.8em;
     }
@@ -116,7 +116,8 @@ body {
     .special-key {
         font-size: 0.8em;
         min-width: 50px;
-    }*/
+    }
+
      #keyboard-container {
             display: none;
         }
@@ -128,7 +129,7 @@ body {
         height: 30px;
         font-size: 1.2em;
     }
-/*
+
     .keyboard-button {
         padding: 3px;
         font-size: 0.6em;
@@ -138,7 +139,7 @@ body {
         font-size: 0.6em;
         min-width: 40px;
     }
-        */
+        
     #keyboard-container {
         display: none;
     }

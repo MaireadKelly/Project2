@@ -51,16 +51,16 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
         // SECOND PASS: CHECK FOR PRESENT LETTERS
-            for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < 5; i++) {
             let cell = document.getElementById(`cell-${currentRow}-${i}`);
-                cell.textContent = guess[i];
-                if (correctLetters[i]) {
-                    cell.classList.add('correct');
-                } else if (answerLetters.includes(guessLetters[i])) {
-                    cell.classList.add('present');
-                    answerLetters[answerLetters.indexOf(guessLetters[i])] = null;  
-                } else {
-                    cell.classList.add('absent');
+            cell.textContent = guess[i];
+            if (correctLetters[i]) {
+                cell.classList.add('correct');
+            } else if (answerLetters.includes(guessLetters[i])) {
+                cell.classList.add('present');
+                answerLetters[answerLetters.indexOf(guessLetters[i])] = null;
+            } else {
+                cell.classList.add('absent');
             }
         }
 
@@ -79,17 +79,41 @@ document.addEventListener("DOMContentLoaded", function () {
                 setTimeout(restartGame, 3000); /*RESTART AFTER 3MINS*/
             }
         }
-
         guessInput.value = "";
     }
 
     submitButton.addEventListener('click', checkGuess);
-
     guessInput.addEventListener('keydown', function (event) {
         if (event.key === "Enter") {
             event.preventDefault();
             checkGuess();
         }
+    });
+
+    document.addEventListener("keyup", function (event) {
+        let pressedKey = event.key.toUpperCase();
+        if (pressedKey === "BACKSPACE") {
+            guessInput.value = guessInput.value.slice(0, -1);
+        } else if (pressedKey.match(/^[A-Z]$/) && guessInput.value.length < 5) {
+            guessInput.value += pressedKey;
+        } else if (pressedKey === "ENTER") {
+            checkGuess();
+        }
+    });
+
+    document.querySelectorAll('.keyboard-button').forEach(button => {
+        button.addEventListener('click', function () {
+            let key = this.textContent.toUpperCase();
+            console.log("Button clicked: ", key); // Debug statement
+            if (key === 'DEL') {
+                guessInput.value = guessInput.value.slice(0, -1);
+            } else if (key === 'ENTER') {
+                checkGuess();
+            } else if (guessInput.value.length < 5) {
+                guessInput.value += key;
+            }
+            console.log("Current guess input: ", guessInput.value); // Debug statement
+        });
     });
 
     createBoard();
