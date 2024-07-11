@@ -5,12 +5,10 @@ document.addEventListener("DOMContentLoaded", function () {
     let submitButton = document.getElementById('submit-button');
     let message = document.getElementById('message');
     let playAgainButton = document.getElementById('play-again-button');
-    
     let answer = words[Math.floor(Math.random() * words.length)].toUpperCase();
     let currentRow = 0;
-    let gameEnded = false; 
 
-
+    
     function createBoard() {
         board.innerHTML = ''; 
         for (let i = 0; i < 6; i++) {
@@ -23,6 +21,17 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    // FUNCTION TO UPDATE ON-SCREEN KEYBOARD KEYS BASED ON GUESSES
+    function updateKeyStates(letter, state) {
+        let buttons = document.querySelectorAll('.keyboard-button');
+        buttons.forEach(button => {
+            if (button.textContent.toUpperCase() === letter) {
+                button.classList.remove('correct', 'present', 'absent');
+                button.classList.add(state);
+            }
+        });
+    }
+
     // RESTART GAME FUNCTION
     function restartGame() {
         currentRow = 0;
@@ -33,64 +42,79 @@ document.addEventListener("DOMContentLoaded", function () {
         submitButton.disabled = false;
         board.innerHTML = "";
         createBoard();
-        gameEnded = false;
         playAgainButton.style.display = "none"; // Hide the button when restarting the game
     }
 
-    // CHECK GUESS FUNCTION
-    function checkGuess() {
-        let guess = guessInput.value.toUpperCase();
-        if (guess.length !== 5) {
-            message.textContent = "Word must be 5 letters long";
-            return;
-        }
+    //RESET THE KEYBOARD BUTTON STATES
+        let buttons = document.querySelectorAll('.keyboard-button');
+        buttons.forEach(button => {
+            button.classList.remove('correct', 'present', 'absent');
+        });
 
-        message.textContent = "";
-        let correctLetters = new Array(5).fill(false);
-        let guessLetters = guess.split('');
-        let answerLetters = answer.split('');
-
-        // CHECK FOR CORRECT LETTERS
-        for (let i = 0; i < 5; i++) {
-            if (guessLetters[i] === answerLetters[i]) {
-                correctLetters[i] = true;
-                answerLetters[i] = null;
+        function checkGuess() {
+            let guess = guessInput.value.toUpperCase();
+            if (guess.length !== 5) {
+                message.textContent = "Word must be 5 letters long";
+                return;
             }
-        }
-
-        // CHECK FOR PRESENT LETTERS
-        for (let i = 0; i < 5; i++) {
-            let cell = document.getElementById(`cell-${currentRow}-${i}`);
-            cell.textContent = guess[i];
-            if (correctLetters[i]) {
-                cell.classList.add('correct');
-            } else if (answerLetters.includes(guessLetters[i])) {
-                cell.classList.add('present');
-                answerLetters[answerLetters.indexOf(guessLetters[i])] = null;
-            } else {
-                cell.classList.add('absent');
+        
+            message.textContent = "";
+            let correctLetters = new Array(5).fill(false);
+            let guessLetters = guess.split('');
+            let answerLetters = answer.split('');
+        
+            // CHECK FOR CORRECT LETTERS
+            for (let i = 0; i < 5; i++) {
+                if (guessLetters[i] === answerLetters[i]) {
+                    correctLetters[i] = true;
+                    answerLetters[i] = null;
+                }
             }
-        }
-
-        if (guess === answer) {
-            message.textContent = "Well Done!! You Guessed Right!!";
-            submitButton.disabled = true;
-            guessInput.disabled = true;
-            gameEnded = true; 
-            playAgainButton.style.display = "block"; 
-        } else {
-            currentRow++;
-            if (currentRow === 6) {
-                message.textContent = `Game Over! The word was ${answer}`;
+        
+            // CHECK FOR PRESENT LETTERS
+            for (let i = 0; i < 5; i++) {
+                let cell = document.getElementById(`cell-${currentRow}-${i}`);
+                cell.textContent = guess[i];
+                if (correctLetters[i]) {
+                    cell.classList.add('correct');
+                } else if (answerLetters.includes(guessLetters[i])) {
+                    cell.classList.add('present');
+                    answerLetters[answerLetters.indexOf(guessLetters[i])] = null;
+                } else {
+                    cell.classList.add('absent');
+                }
+            }
+        
+            // UPDATE ON-SCREEN KEYBOARD FUNCTIONS
+            guessLetters.forEach(letter => {
+                if (letter) { // Check if it's not null
+                    let state = 'absent';
+                    if (correctLetters[guessLetters.indexOf(letter)]) {
+                        state = 'correct';
+                    } else if (answerLetters.includes(letter)) {
+                        state = 'present';
+                    }
+                    updateKeyStates(letter, state);
+                }
+            });
+        
+            if (guess === answer) {
+                message.textContent = "Well Done!! You Guessed Right!!";
                 submitButton.disabled = true;
                 guessInput.disabled = true;
-                gameEnded = true; 
                 playAgainButton.style.display = "block"; 
+            } else {
+                currentRow++;
+                if (currentRow === 6) {
+                    message.textContent = `Game Over! The word was ${answer}`;
+                    submitButton.disabled = true;
+                    guessInput.disabled = true;
+                    playAgainButton.style.display = "block"; 
+                }
             }
+            guessInput.value = "";
         }
-        guessInput.value = "";
-    }
-
+        
     // SUBMIT BUTTON EVENT LISTENER
     submitButton.addEventListener('click', checkGuess);
 
@@ -105,11 +129,7 @@ document.addEventListener("DOMContentLoaded", function () {
         
         else if (pressedKey === "ENTER") {
             event.preventDefault();
-            if (gameEnded) {
-                restartGame();
-            } else {
                 checkGuess();
-            }
         }
         
         else if (pressedKey.match(/^[A-Z]$/) && guessInput.value.length < 5) {
@@ -125,11 +145,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (key === 'DEL') {
                 guessInput.value = guessInput.value.slice(0, -1);
             } else if (key === 'ENTER') {
-                if (gameEnded) { 
-                    restartGame();
-                } else {
-                    checkGuess();
-                }
+                checkGuess();
             } else if (guessInput.value.length < 5) {
                 guessInput.value += key;
             }
