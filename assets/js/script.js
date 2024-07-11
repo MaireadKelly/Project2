@@ -1,3 +1,4 @@
+/*jshint esversion: 6*/
 document.addEventListener("DOMContentLoaded", function () {
     let board = document.getElementById('board');
     let guessInput = document.getElementById('guess-input');
@@ -25,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
         message.textContent = "";
         guessInput.value = "";
         guessInput.disabled = false;
-        submitButton.disabled = "false";
+        submitButton.disabled = false;
         board.innerHTML = "";
         createBoard();
     }
@@ -83,28 +84,27 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     submitButton.addEventListener('click', checkGuess);
+    
     guessInput.addEventListener('keydown', function (event) {
-        if (event.key === "Enter") {
+        let pressedKey = event.key.toUpperCase();
+        if (pressedKey === "BACKSPACE") {
+            event.preventDefault();
+            guessInput.value = guessInput.value.slice(0, -1);
+        }
+        else if (pressedKey = "ENTER") {
             event.preventDefault();
             checkGuess();
         }
-    });
-
-    document.addEventListener("keyup", function (event) {
-        let pressedKey = event.key.toUpperCase();
-        if (pressedKey === "BACKSPACE") {
-            guessInput.value = guessInput.value.slice(0, -1);
-        } else if (pressedKey.match(/^[A-Z]$/) && guessInput.value.length < 5) {
-            guessInput.value += pressedKey;
-        } else if (pressedKey === "ENTER") {
-            checkGuess();
+        else if (pressedKey.match(/^[A-Z]$/) && guessInput.value.length < 5) {
+            event.preventDefault();
+        }
         }
     });
+
 
     document.querySelectorAll('.keyboard-button').forEach(button => {
         button.addEventListener('click', function () {
             let key = this.textContent.toUpperCase();
-            console.log("Button clicked: ", key); // Debug statement
             if (key === 'DEL') {
                 guessInput.value = guessInput.value.slice(0, -1);
             } else if (key === 'ENTER') {
@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function () {
             } else if (guessInput.value.length < 5) {
                 guessInput.value += key;
             }
-            console.log("Current guess input: ", guessInput.value); // Debug statement
+           
         });
     });
 

@@ -23,7 +23,7 @@ body {
 .cell {
     width: 50px;
     height: 50px;
-    border: 2px, solid #3a3a3a;
+    border: 2px solid #3a3a3a;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -118,7 +118,7 @@ body {
         min-width: 50px;
     }
 
-     #keyboard-container {
+    #keyboard-container {
             display: none;
         }
     }
