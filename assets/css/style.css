@@ -23,7 +23,7 @@ body {
 .cell {
     width: 50px;
     height: 50px;
-    border: 2px solid #3a3a3a;
+    border: 2px solid #3a3a3a; /* Corrected border definition */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -56,13 +56,26 @@ body {
 #submit-button {
     padding: 10px 20px;
     background-color: #7da1bf;
-    color: #ffffff ;
+    color: #ffffff;
     border: none;
     cursor: pointer;
 }
 
 #submit-button:hover {
     color: #0048a4;
+}
+
+#play-again-button {
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+#play-again-button:hover {
+    color: #2e7d32;
 }
 
 #message {
@@ -79,7 +92,7 @@ body {
     height: 40px;
     margin: 2px;
     font-size: 18px;
-    cursor: poointer;
+    cursor: pointer;
     text-transform: uppercase;
 }
 
@@ -99,8 +112,8 @@ body {
 .keyboard-button:hover {
     background-color: #ccc;
 }
- /*HIDE KEYBOARD FOR SMALLER DEVICES*/
-/* RESPONSIVE STYLES */
+
+/* Responsive styles */
 @media (max-width: 768px) {
     .cell {
         width: 40px;
@@ -119,9 +132,9 @@ body {
     }
 
     #keyboard-container {
-            display: none;
-        }
+        display: none;
     }
+}
 
 @media (max-width: 480px) {
     .cell {
@@ -139,7 +152,7 @@ body {
         font-size: 0.6em;
         min-width: 40px;
     }
-        
+
     #keyboard-container {
         display: none;
     }
