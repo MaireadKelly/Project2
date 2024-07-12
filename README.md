@@ -1,131 +1,179 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# WORDLES
+As a lover of wordle I thought that being limited to only being able to play a new puzzle once a day was far too restrictive.  So I decided to make my own version so I and others could play away to our hearts content
 
-Welcome Máiréad O'Shea,
+Visit the deployed site: [WORDLES](https://maireadkelly.github.io/WORDLES/)
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+## Picture of the website in different devices
+[Am I responsive image](/assets/images/am-i-responsive.png)
 
-You can safely delete this README.md file or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **June 18, 2024**
+## User Experience (UX)
 
-## Gitpod Reminders
+### User Stories
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+* As a user I want to be able to play as many games as I wish each day.
+* As a user, I want to be able to play across a range of different devices.
 
-`python3 -m http.server`
+### Testing user stories
+**User Story 1**: As a user I want to be able to play as many games as I wish each day.
+- Feature: With a word list of over 5750 words the only problem would be the battery life of your device.
 
-A blue button should appear to click: _Make Public_,
+**User Story 2**: As a user, I want to be able to play across a range of different devices.
+- Feature: Game is user friendly over many devices.  The keyboard has been hidden on smaller devices to make for a much better user experience.
 
-Another blue button should appear to click: _Open Browser_.
 
-To run a backend Python file, type `python3 app.py` if your Python file is named `app.py`, of course.
+## Bugs
 
-A blue button should appear to click: _Make Public_,
+I ran my HTML and CSS code through the W3C Markup Validator - No Errors were found
+I ran my Script.js through the JSHint validator and no errors were found.
+However, during testing I found that playing on smaller screens was not very much fun as the on-screen keyboard was taking up too much screen space and really took the fun out of it. To resolve this problem I hid the on-screen keyboard for small devices.  This allowed for a much more enjoyable gameplay experience.
 
-Another blue button should appear to click: _Open Browser_.
+![HTML Validation](assets/images/valhtml.png)
+![CSS Validation](assets/images/valcss.png)
+![JavaScript Validation](assets/images/valjs.png)
 
-By Default, Gitpod gives you superuser security privileges. Therefore, you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
 
-To log into the Heroku toolbelt CLI:
+![Phone with Keyboard](assets/images/phone-keyboard.jpg)
+![winner](assets/images/won-phone.jpg)
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+Another problem which took a lot of debugging to resolve was the instances of letters either
+a) were in the guess more than once but only in the answer once eg. 
+      guess was "There" and answer was "Apple" which caused the two instances of "e" being marked as "present" and "correct" respectively.
+       To resolve this I had to write loop with corrsponding event listeners check all instances were correct.
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you, so do not share it. If you accidentally make it public, you can create a new one with _Regenerate API Key_.
+   ![No Duplicates](../WORDLES/assets/images/no-duplicates.png)
 
-### Connecting your Mongo database
+### Functionality
 
-- **Connect to Mongo CLI on a IDE**
-- navigate to your MongoDB Clusters Sandbox
-- click **"Connect"** button
-- select **"Connect with the MongoDB shell"**
-- select **"I have the mongo shell installed"**
-- choose **mongosh (2.0 or later)** for : **"Select your mongo shell version"**
-- choose option: **"Run your connection string in your command line"**
-- in the terminal, paste the copied code `mongo "mongodb+srv://<CLUSTER-NAME>.mongodb.net/<DBname>" --apiVersion 1 --username <USERNAME>`
-  - replace all `<angle-bracket>` keys with your own data
-- enter password _(will not echo **\*\*\*\*** on screen)_
+* On-Screen Keyboard reflecting letters guessed
+![Tablet](assets/images/ipad-air.png)
+![Desktop](assets/images/game-lost.png)
 
-------
+* Play Again Button
+![Play Again](assets/images/before-playagain.png)
 
-## Release History
+* Must be 5 letters long
+![five letters](assets/images/five-letters.png)
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
 
-**June 18, 2024,** Add Mongo back into template
+### Accessibility
 
-**June 14, 2024,** Temporarily remove Mongo until the key issue is resolved
+* The colors chosen are both easy for those who wish to play for long periods of time, but also take into account people who are color blind.
 
-**May 28 2024:** Fix Mongo and Links installs
+* I added a play again button instead of a timed refresh option to cater for those who use screen reader applications
+alt text
+* Use of Lighthouse to test accessability ![Lighthouse](assets/images/lighthouse.png)
 
-**April 26 2024:** Update node version to 16
+### Future Implementations
 
-**September 20 2023:** Update Python version to 3.9.17.
+* Introduce statitistics tracker.
+* The ability to recognise if a word guessed is in facct a real word.
+* Add some fun features like sounds and animations. Such as fanfare for games Won and Oh No! for games lost.
 
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
 
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
+### Languages Used
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
+HTML, CSS, JavaScript
 
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
+### Libraries & Programs Used
 
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
+- [GitHub](https://github.com/) - Repository hosting and version control.
+- [GitPod](https://www.gitpod.io/) - Integrated Development Environment (IDE).
+- [Google Fonts](https://fonts.google.com/) - Importing fonts used in the game.
+- [Favicon](https://favicon.io/) - Favicon as seen on the games online tab
+- [Google Developer Tools](https://developer.chrome.com/docs/devtools/) - Testing and  troubleshooting.
+- [Am I Responsive?](http://ami.responsivedesign.is/) - Responsive design visualization tool.
+- - -
 
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
+## Deployment
+- Github pages
+    - This project was deployed to GitHub Pages using the following steps
+      - Log in to GitHub and locate the GitHub Repository
+      - At the top of the Repository (not top of page), locate the "Settings" Button on 
+        the menu.
+      - Scroll down the Settings page until you locate the "GitHub Pages" Section.
+      - Under "Source", click the dropdown called "None" and select "Master Branch".
+      - The page will automatically refresh.
+      - Scroll back down through the page to locate the now published site link in the "GitHub Pages" section.
+      - live link for the page can be found here [WORDLES](https://maireadkelly.github.io/WORDLES/)
+- Forking the GitHub Repository
+    - By forking the GitHub Repository we make a copy of the original repository on our GitHub account to view and/or make changes without affecting the original repository by using the following steps
+     - Log in to GitHub and locate the GitHub Repository
+     - At the top of the Repository (not top of page) just above the "Settings" Button on the menu, locate the "Fork" Button.
+     - You should now have a copy of the original repository in your GitHub account.
+- Making a Local Clone
+   - Log in to GitHub and locate the GitHub Repository
+   - Under the repository name, click "Clone or download".
+   -  To clone the repository using HTTPS, under "Clone with HTTPS", copy the link.
+   - Open Git Bash
+   - Change the current working directory to the location where you want the cloned directory to be made
+   - Type git clone, and then paste the URL you copied in Step 3.
+      - $ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
+   - Press Enter. Your local clone will be created.
 
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
+- - -
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+## Testing
+Different tests carried out were -
+There were may different variables that needed to be tested to ensure that my version worked as close as possible to the Wordle I know and love, as I found out...the hard way
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
+#1. 
+Test that game can be used on computer, tablet and mobile devices.  As you will see the keyboard has been hidden on the moblie device to enable easy game play.
+![Desktop](assets/images/winner.png)
+![Tablet](assets/images/ipad-air.png)
+![Mobile](assets/images/phone-keyboard.jpg)
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
+#2 Mobile device progression 
+![Before](assets/images/android.png)
+![After](assets/images/lost-phone.jpg)
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+#3 Visual testing across moblie devices
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
+Both HTML and CSS were validated using W3C validators, Javascript was tested using JSHINT ensuring compliance and correctness.
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+![index.html Validator](assets/readme-images/htmlvalidat.png)
+![style.css Validator](assets/readme-images/cssvalidate.png)
+![JSHINT Validator](assets/readme-images/javahint.png)
 
-------
+### Lighthouse
 
-## FAQ about the uptime script
+Lighthouse was used to test performance, accessibility, best practices, and SEO of the website.
 
-**Why have you added this script?**
+![Lighthouse testing for Mobile](assets/readme-images/lighthousemobile.png)
+![Lighthouse testing for Desktop](assets/readme-images/lighthousedesk.png)
 
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
+### Browser Compatibility
+Tested the website on different browsers to ensure compatibility:
+- Google Chrome
+- Mozilla Firefox
+- Microsoft Edge
+- Duck Duck Go
 
-**How will this affect me?**
+### Responsiveness
+Screenshots of responsivness on different browsers.
+![Mozilla](assets/images/mozilla-test.png)
+![Edge](assets/images/edge-test.png)
+[Duck Duck Go](<assets/images/duck test.png>)
+All other screen shots were taken in Google chrome
 
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
+- - -
 
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
+## Credits
 
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
+* Code Institute for project guidelines and reference. [Code Institute](https://codeinstitute.net/)
+* GitHub for version control and repository hosting. [GitHub](https://github.com/)
+* GitPod for providing their IDE for coding. [GitPod](https://www.gitpod.io/)
+* Google Fonts for providing fonts used in the project. [Google Fonts](https://fonts.google.com/)
+* MORGENSTERN2573 for the invaluable words.js file [MorgenStern2573](https://github.com/Morgenstern2573/wordle_clone)
+* ChatGPT for helping me understand javascript so much better through helping me resolve the many problems encountered along the way [ChatGPT](https://chatgpt.com/)
+* Font Awesome for my icons. [Font Awesome](https://fontawesome.com/)
+* Palleton for helping me with colors and hex codes [Paletton](https://paletton.com/)
 
-**So….?**
+- - -
 
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
+## Acknowledgments
 
-**Can I opt out?**
+Along with the above the help and support of my fellow class mates and Our tutor for their ongoing help and support through every twist and turn
 
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
 
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
 
-**Anything more?**
-
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
-
----
-
-Happy coding!
