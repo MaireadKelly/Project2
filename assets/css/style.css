@@ -1,3 +1,4 @@
+/*GENERAL PAGE STYLES*/
 body {
     display: flex;
     justify-content: center;
@@ -7,10 +8,12 @@ body {
     font-family: sans-serif;
 }
 
+/*CONTAINER FOR THE GAME ELEMENTS*/
 #game-container {
     text-align: center;
 }
 
+/*BORD GRID FOR THE WORD GAME*/
 #board {
     display: grid;
     grid-template-columns: repeat(5, 50px);
@@ -31,21 +34,25 @@ body {
     font-weight: bold;
 }
 
+/*CORRECT LETTER IN THE CORRECT POSITION*/
 .correct {
     background-color: green;
     color: white;
 }
 
+/*CORRECT LETTER IN THE WRONG POSITION*/
 .present {
     background-color: yellow;
     color: black;
 }
 
+/*INCORRECT LETTER*/
 .absent {
     background-color: grey;
     color: white;
 }
 
+/*USERS GUESS INPUT*/
 #guess-input {
     font-size: 24px;
     padding: 5px;
@@ -53,6 +60,7 @@ body {
     margin-bottom: 10px;
 }
 
+/*SUBMIT BUTTON STYLES*/
 #submit-button {
     padding: 10px 20px;
     background-color: #7da1bf;
@@ -65,6 +73,7 @@ body {
     color: #0048a4;
 }
 
+/*PLAY AGAIN BUTTON STYLES*/
 #play-again-button {
     padding: 10px 20px;
     background-color: #4caf50;
@@ -83,6 +92,7 @@ body {
     font-size: 18px;
 }
 
+/*GENERAL KEYBOARD STYLES*/
 #keyboard {
     margin-top: 20px;
 }
@@ -96,6 +106,7 @@ body {
     text-transform: uppercase;
 }
 
+/*STYLES FOR SPECIAL KEYS*/
 .special-key {
     font-size: 1.2em;
     width: 80px;
@@ -113,7 +124,7 @@ body {
     background-color: #ccc;
 }
 
-/*styles for guessed letters*/
+/*STYLES FOR GUESSED LETTERS*/
 
 .keyboard-button.correct {
     background-color: #2e7d32;
@@ -133,7 +144,7 @@ body {
     box-shadow: 0px 4px 0px #3a3a3a;
 }
 
-/* Responsive styles */
+/* RESPONSIVE STYLES FOR SMALLER SCREENS */
 @media (max-width: 768px) {
     .cell {
         width: 40px;
@@ -173,6 +184,7 @@ body {
         min-width: 40px;
     }
 
+    /*HIDE KEYBOARD ON MOBILE DEVICES*/
     #keyboard-container {
         display: none;
     }
