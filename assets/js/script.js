@@ -1,5 +1,6 @@
 /*jshint esversion: 6*/
 document.addEventListener("DOMContentLoaded", function () {
+    //GET REFERENCES TO DOM ELEMENTS
     let board = document.getElementById('board');
     let guessInput = document.getElementById('guess-input');
     let submitButton = document.getElementById('submit-button');
@@ -8,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let answer = words[Math.floor(Math.random() * words.length)].toUpperCase();
     let currentRow = 0;
 
-    
+  //FUNCTION CREATE THE GAME BOARD  
     function createBoard() {
         board.innerHTML = ''; 
         for (let i = 0; i < 6; i++) {
@@ -155,5 +156,6 @@ document.addEventListener("DOMContentLoaded", function () {
     //  "PLAY AGAIN" BUTTON
     playAgainButton.addEventListener('click', restartGame);
 
+    // INITIALISE THE GAME BOARD
     createBoard();
 });
